@@ -5,7 +5,9 @@
 </head>
   <body>
    <!-- bootstrap default NavBar-->
-   @include('partials._nav')
+   <div style="margin-top:150px">
+
+   </div>
    <!--End NavBar-->
 
     <div class="container">

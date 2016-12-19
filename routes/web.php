@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.main');
-});
+
+Route::get('/', 'LoginController@login');// mostra o formulário
+Route::post('/login', 'LoginController@postLogin');
+Route::get('/logout', 'LoginController@logout');
