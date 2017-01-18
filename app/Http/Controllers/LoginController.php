@@ -15,30 +15,12 @@ class LoginController extends Controller
     }
     public function postLogin(Request $request)
     {
-
       Sentinel::authenticate($request->all());
       $slug = Sentinel::getUser()->roles()->first()->slug;
 
-      if ($slug == 'admin')
-          return redirect('/admin');
-      elseif ($slug == 'studant') {
-              $estudantes = Estudante::all();
-              foreach ($estudantes as $estudante) {
-                //var_dump($estudante->email." ? ".Sentinel::getUser()->email);
-                if ($estudante->email == Sentinel::getUser()->email)
-                    return redirect('/studant'.'/'.$estudante->id);
-                  }
-       }elseif ($slug == 'supervisor') {
 
-                $supervisores = Docente::all();
-                foreach ($supervisores as $supervisor) {
-                        if ($supervisor->email == Sentinel::getUser()->email)
+          echo "".$slug;
 
-                          return redirect('/supervisor'.'/'.$supervisor->id);
-
-                }
-            }
-            return redirect('/login');
         }
 
     public function logout($value='')

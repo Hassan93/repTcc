@@ -1,11 +1,11 @@
 @extends('layouts.main')
 
-@section('title', '| Log In')
+@section('title', '| Login')
 
 @section('content')
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-           {!! Form::open(array('data-parsley-validate'=>'','method'=>'POST'))!!}
+           {!! Form::open(array('data-parsley-validate'=>'', 'method'=>'POST'))!!}
              {{Form::label('email', 'Email:')}}
              {{Form::email('email', null, array('class'=>'form-control', 'required'=>''))}}
              {{Form::label('password', 'Password:', array('class'=>'form-spacing-top'))}}

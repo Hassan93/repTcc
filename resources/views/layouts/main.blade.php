@@ -4,16 +4,8 @@
 @include('partials._head')
 </head>
   <body>
-   <!-- bootstrap default NavBar-->
-   <div style="margin-top:150px">
-
-   </div>
-   <!--End NavBar-->
-
-    <div class="container">
-
+    <div class="container" style="margin-top:20px;">
         @yield('content')
-
         @include('partials._footer')
 
   </div>
