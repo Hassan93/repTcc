@@ -5,8 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-10 col-md-offset-2">
-          <form class="form-inline" method="post" action="{{url('estatisticas')}}">
-            {{csrf_field()}}
+          <form class="form-inline" method="post" action="{{route('estatisticas')}}">
             <div class="form-group">
               <div class="input-group">
                 <label for="ano">Ano</label>
@@ -23,7 +22,7 @@
               </div>
               <div class="input-group">
                 <label for="supervisor">Supervisor</label>
-                <input type="text" class="form-control" name="supervisor" placeholder="Supervisor">
+                <input type="text" class="form-control" id="exampleInputAmount" placeholder="Área Científica">
               </div>
             </div>
             <button type="submit" class="btn btn-primary glyphicon">Gerar</button>
@@ -42,12 +41,10 @@
               <th>Ano</th>
               <th>Qtd de Monografias</th>
             </tr>
-            @foreach($cursos as $curso)
-            <tr>
-              <td>{{$curso->designacao}}</td>
-              <td>2016</td>
-              <td>{{count($curso->monografias)}}</td>
-            </tr>
+            @foreach($monografias as $monografia)
+            <td>{{$monografia->curso->designacao}}</td>
+            <td>{{date('Y',$monografia->created_at)}}</td>
+            <td>{{count($monografia->curso->monografias)}}</td>
             @endforeach
           </table>
         </div>

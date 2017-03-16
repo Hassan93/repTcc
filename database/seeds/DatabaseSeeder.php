@@ -2,7 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use App\Role;
-
+use App\Curso;
+use App\Area;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -14,6 +15,11 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         $role = new Role;
+        $role->slug= 'admin';
+        $role->name= 'Administrador';
+        $role->save();
+        
+        $role = new Role;
         $role->slug= 'func';
         $role->name= 'Funcionario';
 
@@ -24,5 +30,33 @@ class DatabaseSeeder extends Seeder
         $role->name= 'Faculdade';
 
         $role->save();
+
+        $curso = new Curso;
+        $curso->designacao = 'Informática';
+
+        $curso->save();
+
+        $curso = new Curso;
+        $curso->designacao = 'Pdministracão Pública';
+
+        $curso->save();
+
+        // $area = new Area;
+        // $area->designacao ='Ciências Econômicas e Sociais';
+        // $area->descricao = 'Bla bla bla';
+
+        // $area->save();
+
+        // $area = new Area;
+        // $area->designacao ='Ciências Tecnológicas';
+        // $area->descricao = 'Bla bla bla';
+        
+        // $area->save();
+
+        // $area = new Area;
+        // $area->designacao ='Ciências Jurídicas';
+        // $area->descricao = 'Bla bla bla';
+        
+        // $area->save();
     }
 }

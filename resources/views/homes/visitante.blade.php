@@ -4,26 +4,32 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-8 col-md-offset-1">
-          <form class="form-inline">
+        <div class="col-md-8 col-md-offset-2">
+          <form class="form-inline" method="Post" action="{{url('/pesquisa')}}">
+            {{csrf_field()}}
             <div class="form-group">
               <div class="input-group">
-                <input type="text" class="form-control" id="exampleInputAmount" placeholder="Autor">
+                <input type="text" class="form-control" name="autor" placeholder="Autor">
               </div>
               <div class="input-group">
-                  <label for="">OR</label>
+                  <label for="">|</label>
               </div>
               <div class="input-group">
-                <input type="text" class="form-control" id="exampleInputAmount" placeholder="Título">
+                <input type="text" class="form-control" name="titulo" placeholder="Título">
               </div>
               <div class="input-group">
-                  <label for="">OR</label>
+                  <label for="">|</label>
               </div>
               <div class="input-group">
-                <input type="text" class="form-control" id="exampleInputAmount" placeholder="Área Científica">
+                <select class="form-control" name="area">
+                  <option value = "-1">Escolha a área científica</option>
+                  @foreach($areas as $area)
+                  <option value="{{$area->id}}">{{$area->designacao}}</option>
+                  @endforeach
+                </select>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary glyphicon glyphicon-search">Pesquisar</button>
+            <button type="submit" class="btn btn-primary glyphicon glyphicon-search"></button>
           </form>
         </div>
         <div class="col-md-8  col-md-offset-1">
@@ -35,39 +41,37 @@
               <th>Informacões da Monografia</th>
               <th>Monografia em pdf</th>
             </tr>
-            <tr onclick="myFunction()">
+            @foreach($monografias as $monografia)
+            <tr id="{{$monografia->id}}" onClick="myFunction({{$monografia->id}})">
               <td>
-                Autor: Sérgio Bata <br/>
-                Supervisor: Rodrigues Zicai Fazenda <br/>
-                Título: Desenvolvimento dum sistema web para gestão de monografias
+                Autor: {{$monografia->autor}} <br/>
+                Supervisor: {{$monografia->supervisor}} <br/>
+                Título: {{$monografia->titulo}}
+                <div id ="{{'resumo'.$monografia->id}}" hidden>{{$monografia->resumo}}</div>
               </td>
               <td>
-                <a href="#", class="glyphicon glyphicon-download">Encontre aqui o ficheiro</a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Autor: Manuel Severino<br/>
-                Supervisor: Jorge Sebastião <br/>
-                Título: Uso de Telefones celulares em mocambique
-              </td>
-              <td>
-                <a href="#", class="glyphicon glyphicon-download">Encontre o ficheiro aqui</a>
+                <a href="{{route('download', ['id'=>$monografia->id])}}", class="glyphicon glyphicon-download">Encontre aqui o ficheiro</a>
               </td>
             </tr>
+            @endforeach
           </table>
         </div>
         <div class="col-md-3" id="resumo">
           <label for="resumo">Resumo</label>
-          <div class="well">
+          <div class="well" id="texto">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </ul>
           </div>
         </div>
     </div>
+    <div class="text-center">
+        {!! $monografias->links()!!} <!--Pagination-->
+    </div>
 @endsection
 <script type="text/javascript">
-function myFunction() {
-vdocument.getElementById("resumo").hidden = false;
+function myFunction(id) {
+var resumo = document.getElementById("resumo"+id).innerHTML;
+ document.getElementById("texto").innerHTML=resumo;
+
 }
 </script>

@@ -32,34 +32,17 @@
               <th>Último login</th>
               <th>Accão</th>
             </tr>
-            <tr>
-              <td>ECA</td>
-              <td>Escola</td>
-              <td>06/01/2017, 15:51</td>
-              <td>
-                <a href="#", class="btn btn-primary glyphicon glyphicon-pencil"></a>
-                <a href="#", class="btn btn-danger glyphicon glyphicon-remove"></a>
-              </td>
-            </tr>
-            <tr>
-              <td>FE</td>
-              <td>Faculdade</td>
-              <td>06/01/2017, 15:51</td>
-              <td>
-                <a href="#", class="btn btn-primary glyphicon glyphicon-pencil"></a>
-                <a href="#", class="btn btn-danger glyphicon glyphicon-remove"></a>
-              </td>
-            </tr>
-            <tr>
-              <td>João Mendes</td>
-              <td>Funcionário</td>
-              <td>06/01/2017, 15:51</td>
-              <td>
-                <a href="#", class="btn btn-primary glyphicon glyphicon-pencil"></a>
-                <a href="#", class="btn btn-danger glyphicon glyphicon-remove"></a>
-              </td>
-            </tr>
-
+            @foreach($usuarios as $usuario)
+              <tr>
+                <td>{{$usuario->first_name}}</td>
+                <td>{{$usuario->last_name}}</td>
+                <td>{{$usuario->last_login}}</td>
+                <td>
+                  <a href="#", class="btn btn-primary glyphicon glyphicon-pencil"></a>
+                  <a href="#", class="btn btn-danger glyphicon glyphicon-remove"></a>
+                </td>
+              </tr>
+            @endforeach
           </table>
         </div>
     </div>

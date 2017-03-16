@@ -46,7 +46,6 @@ class MigrationCartalystSentinel extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('code');
             $table->timestamps();
-
             $table->engine = 'InnoDB';
             $table->unique('code');
         });

@@ -14,56 +14,15 @@
             <button type="submit" class="btn btn-primary glyphicon glyphicon-search"></button>
           </form>
         </div>
-        <div class='col-md-3 col-md-offset-6'>
-         <a href="#" data-toggle="modal" data-target="#myModal" class=" btn btn-primary btn-lg btn-block btn-h1-spacing">Cadastrar Monografia</a>
-        </div>
-
+        
         <div class="col-md-12">
           <hr>
         </div>
         <div class="col-md-3">
           @include('partials._nav');
         </div>
-        <div class="col-md-9">
-          <table class="table table-bordered">
-            <tr>
-              <th>Autor</th>
-              <th>Área Científica</th>
-              <th>Título</th>
-              <th>Estado</th>
-              <th>Accão</th>
-            </tr>
-            @foreach($monografias as $monografia)
-            <tr>
-              <td>{{$monografia->autor}}</td>
-              <td>{{$monografia->area->designacao}}</td>
-              <td>{{$monografia->titulo}}</td>
-              <td>{{$monografia->estado}}</td>
-              <td>
-                <a href="#", class="btn btn-primary glyphicon glyphicon-pencil"></a>
-                <a href="#", class="btn btn-danger glyphicon glyphicon-remove"></a>
-                <a href="{{url('/monografia/'.$monografia->id.'/publicar')}}" class="btn btn-primary glyphicon glyphicon-zoom-in"></a>
-              </td>
-            </tr>
-            @endforeach
-          </table>
-        </div>
-
-    </div>
-    <div class="text-center">
-       {!! $monografias->links()!!} <!--Pagination-->
-    </div>
-@endsection
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h1 class="modal-title" id="myModalLabel">Carregar Monografia</h1>
-      </div>
-      <div class="modal-body">
-        <form class="" action="{{route('monografias.store')}}" method="post" data-parsley-validate="" enctype="multipart/form-data">
+        <div class="col-md-6 col-md-offset-3">
+            <form class="" action="{{route('monografias.store')}}" method="post" data-parsley-validate="">
             {{ csrf_field() }}
             <div class="col-md-9">
               <label for="autor">Autor:</label>
@@ -105,7 +64,7 @@
             </div>
             <div class="form-group col-md-9 form-spacing-top">
              <label for="file">Carregue a monografia</label>
-             <input type="file" name="file" class="glyphicon glyphicon-upload">
+             <input type="file" id="file" name="file" class="glyphicon glyphicon-upload">
            </div>
 
            <div class="col-sm-6" style="margin-top:10px">
@@ -115,12 +74,9 @@
              {{ Form::submit('Carregar', array('class'=>'btn btn-success btn-block'))}}
          </div>
         </form>
-      </div>
-      <div class="modal-footer">
-
-      </div>
+        </div>
+        
     </div>
-  </div>
-</div>
-<!--Validar-->
+
+@endsection
 

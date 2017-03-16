@@ -81,7 +81,7 @@
         <h1 class="modal-title" id="myModalLabel">Carregar Monografia</h1>
       </div>
       <div class="modal-body">
-        <form class="" action="#" method="" data-parsley-validate="">
+        <form class="" action="{{route('monografias.store')}}" method="" data-parsley-validate="">
             {{ csrf_field() }}
             <div class="col-md-9">
               <label for="autor">Autor:</label>
@@ -95,12 +95,18 @@
               <label for="curso">Curso:</label>
               <select class="form-control" name="curso">
                 <option value="">Escolha o curso</option>
+                @foreach($cursos as $curso)
+                  <option value="{{$curso->id}}">{{$curso->designacao}}</option>
+                @endforeach
               </select>
             </div>
             <div class="col-md-9" style="margin-top:10px">
               <label for="area">Área Científica:</label>
               <select class="form-control" name="area">
                 <option value="">Escolha a área</option>
+                @foreach($areas as $area)
+                  <option value="{{$area->id}}">{{$area->designacao}}</option>
+                @endforeach
               </select>
             </div>
             <div class="col-md-9" style="margin-top:10px">
@@ -112,7 +118,7 @@
               <input type="date" class="form-control" name="data_encontro" value="">
             </div>
             <div class="col-md-9" style="margin-top:10px">
-              <label for="chave">Palavras-chave:</label>
+              <label for="chave">Resumo:</label>
               <textarea class="form-control" name="resumo" rows="3" cols="70"></textarea>
             </div>
             <div class="form-group col-md-9 form-spacing-top">

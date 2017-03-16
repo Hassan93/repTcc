@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
 @include('partials._head')
+@include('partials._javascript')
 </head>
   <body>
     <div class="container" style="margin-top:20px;">
@@ -9,8 +10,12 @@
         @include('partials._footer')
 
   </div>
-     @include('partials._javascript')
 
      @yield('scripts')
+     <script type="text/javascript">
+     	$(document).ready(function(){
+     		@yield('jquery')
+     	});
+     </script>
   </body>
 </html>
