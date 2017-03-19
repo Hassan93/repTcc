@@ -19,4 +19,4 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-  <center><img src="img/header.png" class="img-responsive" alt="Responsive image"></center>
+  <center><img src="img/header.PNG" class="img-responsive" alt="Responsive image"></center>
