@@ -10,4 +10,9 @@ class Area extends Model
     {
     	return $this->hasMany('App\Monografia');
     }
+
+    public function cursos()
+    {
+    	return $this->hasMany('App\Curso');
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Sentinel;
+use App\Area;
 
 class UsuariosController extends Controller
 {
@@ -14,8 +15,9 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-         $usuarios = Sentinel::findUsers()->with('roles')->get();
-         return view('usuarios.index')->withUsuarios($usuarios);
+         $usuarios = Sentinel::getUserRepository()->all();
+         $faculdades = Area::all();
+         return view('usuarios.index')->withUsuarios($usuarios)->withFaculdades($faculdades);
     }
 
     /**

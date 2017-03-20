@@ -100,7 +100,7 @@
               <input type="date" class="form-control" name="data_encontro" value="">
             </div>
             <div class="col-md-9" style="margin-top:10px">
-              <label for="chave">Resumo:</label>
+              <label for="chave">Palavras-chave:</label>
               <textarea class="form-control" name="resumo" rows="3" cols="70"></textarea>
             </div>
             <div class="form-group col-md-9 form-spacing-top">

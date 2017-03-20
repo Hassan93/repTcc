@@ -10,4 +10,9 @@ class Curso extends Model
 {
 	return $this->hasMany('App\Monografia');
 }
+
+public function area()
+{
+	return $this->belongsTo('App\Area');
+}
 }

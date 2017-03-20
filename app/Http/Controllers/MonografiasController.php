@@ -58,14 +58,14 @@ class MonografiasController extends Controller
                 $monografia->area_id=$request->input('area');
                 $monografia->titulo=$request->input('titulo');
                 $monografia->resumo=$request->input('resumo');
-
+                $monografia->estado='Publicada';
                 $monografia->save();
 
                 $ficheiro->monografia()->associate($monografia);
                 $ficheiro->path =$path;             
           if ($ficheiro->save()) {                      
                 $file->move("./imagem",$path);  
-                echo "Salvo";           
+                return redirect('monografias.index');        
           } else {
                 // errado
           }
@@ -80,6 +80,8 @@ class MonografiasController extends Controller
         } else {
             echo 'nao tem';
         }
+
+        return redirect('monografias.index');
     }
 
     /**

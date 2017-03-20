@@ -18,9 +18,17 @@ class LoginController extends Controller
     public function postLogin(Request $request)
     {
       Sentinel::authenticate($request->all());
-    //  $slug = Sentinel::getUser()->roles()->first()->slug;
+      $slug = Sentinel::getUser()->roles()->first()->slug;
 
-        return redirect(route('monografias.index'));
+      if ($slug=='admin') {
+
+          return redirect(route('monografias.index'));
+
+      }elseif ($slug=='faculdade') {
+
+        return redirect(url('/faculdade/'.$slug = Sentinel::getUser()->faculdade_id));
+      }
+
       
     }
 

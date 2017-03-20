@@ -26,7 +26,8 @@ Route::post('/register', 'RegistrationController@postRegister');
 
 //Rotas para testes
 
-Route::get('/faculdade','HomeController@faculdade');
+Route::get('/faculdade/{id}','HomeController@faculdade');
+Route::post('/faculdade/{id}','HomeController@setMonografia');
 Route::get('/visitante','VisitantesController@index');
 Route::Post('/pesquisa','VisitantesController@getMonografias');
 Route::get('/baixar/{id}','FicheirosController@show')->name('download');
