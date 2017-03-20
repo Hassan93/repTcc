@@ -18,7 +18,7 @@ class RegistrationController extends Controller
     {
       $user = Sentinel::RegisterAndActivate($request->all());
       
-      $role = Sentinel::findRoleBySlug('admin');
+      $role = Sentinel::findRoleBySlug('faculdade');
       $role->users()->attach($user);
       
       return redirect('/usuarios');
