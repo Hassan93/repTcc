@@ -6,12 +6,14 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
                    
+            
+
+
             <form action="" method="post" data-parsley-validate>
                 {{csrf_field()}}
                 <div class="form-group">
                     <label for="faculdade_id">Faculdade:</label>
                     <select class="form-control" name="faculdade_id" required>
-                        <option value ="0">A faculdade que pertence</option>
                         @foreach($faculdades as $faculdade)
                             <option value ="{{$faculdade->id}}">{{'Fac. '.$faculdade->designacao}}</option>
                         @endforeach
