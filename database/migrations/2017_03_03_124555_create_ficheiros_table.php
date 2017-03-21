@@ -19,6 +19,8 @@ class CreateFicheirosTable extends Migration
             $table->string('extensao');
             $table->string('tamanho');
             $table->integer('monografia_id');
+            $table->string('mime')->default('application/pdf');
+
             $table->timestamps();
         });
     }

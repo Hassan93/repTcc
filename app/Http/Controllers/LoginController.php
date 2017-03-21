@@ -26,7 +26,7 @@ class LoginController extends Controller
 
       }elseif ($slug=='faculdade') {
 
-        return redirect(url('/faculdade/'.$slug = Sentinel::getUser()->faculdade_id));
+        return redirect(url('/faculdade/'.$slug = Sentinel::getUser()->faculdade));
       }
 
       

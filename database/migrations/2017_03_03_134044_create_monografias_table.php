@@ -21,6 +21,7 @@ class CreateMonografiasTable extends Migration
             $table->string('resumo');
             $table->integer('curso_id');
             $table->integer('area_id');
+            $table->string('estado')->default('Nao Publicada');
             $table->timestamps();
         });
     }

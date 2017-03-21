@@ -58,8 +58,8 @@
        <form action="/register" method="post" data-parsley-validate>
                 {{csrf_field()}}
                 <div class="form-group">
-                    <label for="faculdade_id">Faculdade:</label>
-                    <select class="form-control" name="faculdade_id" required>
+                    <label for="faculdade">Faculdade:</label>
+                    <select class="form-control" name="faculdade" id="faculdade" required>
                         <option value ="0">A faculdade que pertence</option>
                         @foreach($faculdades as $faculdade)
                             <option value ="{{$faculdade->id}}">{{'Fac. '.$faculdade->designacao}}</option>
@@ -93,8 +93,7 @@
                          {{ Form::submit('Carregar', array('class'=>'btn btn-success btn-block'))}}
                 </div>
               </form>
-
-      </div>
+         </div>
       <div class="modal-footer">
 
       </div>

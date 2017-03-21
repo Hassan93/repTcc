@@ -5,9 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends \Cartalyst\Sentinel\Users\EloquentUser
 {
-    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -15,7 +14,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'email',
+        'password',
+        'last_name',
+        'first_name',
+        'permissions',
+        'faculdade',
     ];
 
     /**
