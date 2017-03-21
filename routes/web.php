@@ -30,10 +30,11 @@ Route::group(['middleware'=>['web']], function(){
 
 	Route::get('/faculdade/{id}','HomeController@faculdade');
 	Route::post('/faculdade/{id}','HomeController@setMonografia');
+	Route::get('/visitante','VisitantesController@index');
 	Route::Post('/pesquisa','VisitantesController@getMonografias');
-	Route::Post('/visitante','VisitantesController@index');
 	Route::get('/baixar/{id}','FicheirosController@show')->name('download');
 
+	
 	Route::get('/admin','MonografiasController@index');
 	Route::get('/estatisticas','HomeController@estatisticas');
 	Route::get('/usuarios','UsuariosController@index');
