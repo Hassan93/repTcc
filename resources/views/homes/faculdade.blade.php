@@ -6,6 +6,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-2">
           <form class="form-inline">
+            {{csrf_field()}}
             <div class="form-group">
               <div class="input-group">
                 <input type="text" class="form-control" id="exampleInputAmount" placeholder="Pesquisar">
