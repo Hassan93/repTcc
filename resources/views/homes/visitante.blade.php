@@ -39,7 +39,7 @@
           <table class="table table-hover">
             <tr>
               <th>Informacões da Monografia</th>
-              <th>Monografia em pdf</th>
+              <th>Baixar Monografia (em pdf)</th>
             </tr>
             @foreach($monografias as $monografia)
             <tr id="{{$monografia->id}}" onClick="myFunction({{$monografia->id}})">
@@ -50,16 +50,16 @@
                 <div id ="{{'resumo'.$monografia->id}}" hidden>{{$monografia->resumo}}</div>
               </td>
               <td>
-                <a href="{{route('download', ['id'=>$monografia->id])}}", class="glyphicon glyphicon-download">Encontre aqui o ficheiro</a>
+                <a href="{{route('download', ['id'=>$monografia->id])}}", class="glyphicon glyphicon-download"> Clica aqui</a>
               </td>
             </tr>
             @endforeach
           </table>
         </div>
         <div class="col-md-3" id="resumo">
-          <label for="resumo">Resumo</label>
+          <label for="resumo">Palavras-Chave</label>
           <div class="well" id="texto">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <strong>Aqui apresentam-se as palavras-chava da monografia que seleccionar na tabela.</strong>
             </ul>
           </div>
         </div>
