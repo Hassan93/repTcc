@@ -7,6 +7,7 @@ use App\Curso;
 use App\Area;
 use App\Ficheiro;
 use App\Monografia;
+use Session;
 
 class HomeController extends Controller
 {
@@ -22,8 +23,6 @@ class HomeController extends Controller
     public function setMonografia(Request $request, $id)
     {
            
-
-echo "string".$id;
             if ($request->hasFile('file')) {
                  $file =$request->file('file');           
                   $path          =str_random(20); 
@@ -48,6 +47,7 @@ echo "string".$id;
                 $ficheiro->path =$path;             
           if ($ficheiro->save()) {                      
                 $file->move("./imagem",$path);  
+                Session::flash('success', 'Sucesso! Monografia carregada com sucesso!');
                 return redirect('/faculdade/'.$id);        
           } else {
                 // errado

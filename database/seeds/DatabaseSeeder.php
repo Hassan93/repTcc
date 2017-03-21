@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-       //roles devem ser inseridos manualmente.
+      // roles devem ser inseridos manualmente.
 
         // $user= Sentinel::registerAndActivate([
         //         'email'      => 'sergio@sergio.com',
@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         //         'last_login' =>  ' ',
         //         'first_name' => 'Sérgio Fernando',
         //         'last_name'  => 'Bata',
+        //         'faculdade'  => 0
         //         ]);
        
         // $rolex = Sentinel::findRoleBySlug('admin');

@@ -8,6 +8,7 @@ use App\Estudante;
 use App\Docente;
 use App\Curso;
 use App\Area;
+use Session;
 
 class LoginController extends Controller
 {
@@ -22,9 +23,12 @@ class LoginController extends Controller
 
       if ($slug=='admin') {
 
+          Session::flash('success', 'Administrador autenticado com sucesso!');
           return redirect(route('monografias.index'));
 
       }elseif ($slug=='faculdade') {
+
+           Session::flash('success', 'Autenticado com sucesso!');
 
         return redirect(url('/faculdade/'.$slug = Sentinel::getUser()->faculdade));
       }

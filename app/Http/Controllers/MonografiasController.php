@@ -7,6 +7,7 @@ use App\Curso;
 use App\Area;
 use App\Ficheiro;
 use App\Monografia;
+use Session;
 class MonografiasController extends Controller
 {
     /**
@@ -65,9 +66,10 @@ class MonografiasController extends Controller
                 $ficheiro->path =$path;             
           if ($ficheiro->save()) {                      
                 $file->move("./imagem",$path);  
-                return redirect('monografias.index');        
+                Session::flash('success', 'Monografia cadaastrada com sucesso.');
+                return redirect(route('monografias.index'));        
           } else {
-                // errado
+                
           }
               echo "pdf";
 
@@ -81,7 +83,7 @@ class MonografiasController extends Controller
             echo 'nao tem';
         }
 
-        return redirect('monografias.index');
+       // return redirect('monografias.index');
     }
 
     /**
@@ -118,10 +120,12 @@ class MonografiasController extends Controller
       $monografia= Monografia::find($id);
       if ($request->publicar == 1) {
           $monografia->update(['estado' => 'Publicada']);
+          Session::flash('success', 'Sucesso! A Monografia está acessível aos visitantes!');
       }else{
           $monografia->update(['estado' => 'Nao Publicada']);
-
+          Session::flash('success', 'Sucesso! A Monografia foi despublicada.');
       }
+
     return redirect(route('monografias.index'));
     }
 

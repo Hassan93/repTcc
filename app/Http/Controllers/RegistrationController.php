@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Area;
 use Sentinel;
+use Session;
 
 class RegistrationController extends Controller
 {
@@ -33,6 +34,7 @@ class RegistrationController extends Controller
                     $role = Sentinel::findRoleBySlug('faculdade');
                     $role->users()->attach($user);
             }
+            Session::flash('success', 'Sucesso: Utilizador Cadastrado com Sucesso');
             return redirect('/usuarios');
     }
 }
