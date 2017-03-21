@@ -26,10 +26,13 @@ class RegistrationController extends Controller
                       'last_name'  => $request->input('last_name'),
                       'faculdade'=>$request->input('faculdade')
                       ]);
-            
-            $role = Sentinel::findRoleBySlug('faculdade');
-            $role->users()->attach($user);
-            
+            if ($request->input('faculdade')==0) {
+                    $role = Sentinel::findRoleBySlug('admin');
+                    $role->users()->attach($user);
+            }else{
+                    $role = Sentinel::findRoleBySlug('faculdade');
+                    $role->users()->attach($user);
+            }
             return redirect('/usuarios');
     }
 }
