@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-10 col-md-offset-2">
-          <form class="form-inline" method="post" action="{{url('estatisticas')}}">
+          <form class="form-inline" method="post" action="{{route('estatisticas.store')}}">
             {{csrf_field()}}
             <div class="form-group">
               <div class="input-group">

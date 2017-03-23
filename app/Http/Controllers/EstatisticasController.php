@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Area;
 use App\Monografia;
 use App\Curso;
+use Session;
 class EstatisticasController extends Controller
 {
     /**
@@ -38,11 +39,17 @@ class EstatisticasController extends Controller
      */
     public function store(Request $request)
     {
-       $supervisor = $request->input('supervisor');
-       $monografias = Monografia::where('supervisor', 'like', '%'.$supervisor.'%');
+           $area = Area::find($request->input('area'));
 
-       echo ''.count($monografias);
-        //echo "Aceito".$supervisor;
+      // echo "Area".$request->input('area');
+           $cursos= Curso::where('area_id', '=', $area->id)->get();
+           $monografias = $area->monografias;
+           $areas = Area::all();
+
+           Session::flash('success', 'Escatisticas carregadas com sucesso!');
+    
+        return view('estatisticas.index')->withCursos($cursos)->withAreas($areas);
+
 
     }
 
@@ -93,9 +100,10 @@ class EstatisticasController extends Controller
     public function estatisticas(Request $request)
     {
     //   $area = Area::find($request->input('area'));
-    //   $monografias = $area->monografias;
+    //   $cursos= Curso::where('area_id', '=', $area->id);
+    //  // $monografias = $area->monografias;
     //   $areas = Area::all();
-    //
-    // return view('estatisticas.estatistica')->withMonografias($monografias)->withAreas($areas);
+    
+    // return view('estatisticas.estatistica')->withCursos($cursos)->withAreas($areas);
     }
 }
