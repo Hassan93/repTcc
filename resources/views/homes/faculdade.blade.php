@@ -36,7 +36,7 @@
                 <td>{{$monografia->titulo}}</td>
                 <td>{{$monografia->estado}}</td>
                 <td>
-                  <a href="#", class="btn btn-primary glyphicon glyphicon-pencil"></a>
+                  <a href="{{url('faculdade/'.$area->id.'/monografia/'.$monografia->id)}}", class="btn btn-primary glyphicon glyphicon-pencil"></a>
                 </td>
               </tr>
             @endforeach

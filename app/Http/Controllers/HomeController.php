@@ -19,6 +19,34 @@ class HomeController extends Controller
         $cursos = Curso::where('area_id', '=', $area->id)->get();
         return view('homes.faculdade')->withMonografias($monografias)->withCursos($cursos)->withArea($area);
     }
+    public function editar($faculdade, $monografia)
+    {
+      $monografia = Monografia::find($monografia);
+
+      if($monografia->estado =="Publicada"){
+        Session::flash('error', 'Essa monografia esta publicada! Diga ao administrador para despublicar, so assim podera edita-la');
+        return redirect(url('faculdade/'.$faculdade));
+      }else{
+        $area = Area::find($faculdade);
+        $cursos= Curso::where('area_id', '=', $area->id)->get();
+        return view('homes.edit')->withArea($area)->withMonografia($monografia)->withCursos($cursos);
+      }
+
+    }
+
+    public function edit(Request $request, $faculdade, $monografia)
+    {
+      $monografia= Monografia::find($monografia);
+
+          $monografia->update(['autor'=>$request->input('autor')]);
+          $monografia->update(['supervisor'=>$request->input('supervisor')]);
+          $monografia->update(['titulo'=>$request->input('titulo')]);
+          $monografia->update(['resumo'=>$request->input('resumo')]);
+          $monografia->update(['curso_id'=>$request->input('curso')]);
+
+          Session::flash('success', 'Dados da Monografia actualizados');
+        return redirect(url('faculdade/'.$faculdade));
+    }
 
     public function setMonografia(Request $request, $id)
     {

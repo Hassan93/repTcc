@@ -29,6 +29,8 @@ Route::group(['middleware'=>['web']], function(){
 	//Rotas para testes
 
 	Route::get('/faculdade/{id}','HomeController@faculdade');
+	Route::get('/faculdade/{area}/monografia/{monografia}','HomeController@editar');
+	Route::post('/faculdade/{area}/monografia/{monografia}','HomeController@edit');
 	Route::post('/faculdade/{id}','HomeController@setMonografia');
 	Route::get('/visitante','VisitantesController@index');
 	Route::Post('/pesquisa','VisitantesController@getMonografias');
