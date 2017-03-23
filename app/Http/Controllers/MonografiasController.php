@@ -105,8 +105,16 @@ class MonografiasController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
+        $monografia = Monografia::find($id);
+
+        if ($monografia->estado == "Publicada") {
+            Session::flash('error', 'Nao se pode editar monografia publicada. Despublique antes!');
+            return redirect(route('monografias.index'));
+        }
+            $cursos = Curso::all();
+            $areas  = Area::all();
+        return view('monografias.edit')->withMonografia($monografia)->withCursos($cursos)->withAreas($areas); 
+   }
 
     /**
      * Update the specified resource in storage.
@@ -145,4 +153,21 @@ class MonografiasController extends Controller
         $monografia= Monografia::find($id);
         return view('monografias.publicar')->withMonografia($monografia);
     }
+
+    public function setMonografia(Request $request, $id)
+     {
+        
+          $monografia= Monografia::find($id);
+
+          $monografia->update(['autor'=>$request->input('autor')]);
+          $monografia->update(['supervisor'=>$request->input('supervisor')]);
+          $monografia->update(['titulo'=>$request->input('titulo')]);
+          $monografia->update(['resumo'=>$request->input('resumo')]);
+          $monografia->update(['curso_id'=>$request->input('curso')]);
+          $monografia->update(['area_id'=>$request->input('area')]);
+
+          Session::flash('success', 'Dados da Monografia actualizados');
+
+          return redirect(route('monografias.index'));
+   }
 }
