@@ -40,8 +40,10 @@
               <td>{{$monografia->titulo}}</td>
               <td>{{$monografia->estado}}</td>
               <td>
-                <a href="{{'monografias/'.$monografia->id.'/edit'}}", class="btn btn-primary glyphicon glyphicon-pencil"></a>
-                <a href="#", class="btn btn-danger glyphicon glyphicon-remove"></a>
+                <a href="{{url('monografias/'.$monografia->id.'/edit')}}", class="btn btn-primary glyphicon glyphicon-pencil"></a>
+                <form action="{{route('monografias.destroy', ['id'=>$monografia->id])}} " method="delete">
+                  <button type="submit" class="btn btn-danger glyphicon glyphicon-remove"></button> 
+                </form>
                 <a href="{{url('/monografia/'.$monografia->id.'/publicar')}}" class="btn btn-primary glyphicon glyphicon-zoom-in"></a>
               </td>
             </tr>

@@ -94,7 +94,14 @@ class MonografiasController extends Controller
      */
     public function show($id)
     {
-        //
+          $monografia = Monografia::find($id);
+
+          $monografia->delete();
+
+          Session::flash('success', 'A monografia foi apagada!');
+
+           return redirect(route('monografias.index'));
+
     }
 
     /**
@@ -145,7 +152,7 @@ class MonografiasController extends Controller
      */
     public function destroy($id)
     {
-        //
+      //
     }
 
     public function getMonografia($id)

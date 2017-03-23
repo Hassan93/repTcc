@@ -42,6 +42,7 @@ Route::group(['middleware'=>['web']], function(){
 	Route::resource('monografias', 'MonografiasController');
 	Route::get('/monografia/{id}/publicar', 'MonografiasController@getMonografia');
 	Route::post('/monografia/{id}/edit', 'MonografiasController@setMonografia');
+	//Route::delete('/monografia/{id}', 'MonografiasController@apagar');
 	Route::post('/monografia/{id}/publicar', 'MonografiasController@update');
 	Route::resource('estatisticas', 'EstatisticasController');
 
