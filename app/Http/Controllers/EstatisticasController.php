@@ -43,7 +43,7 @@ class EstatisticasController extends Controller
           if ($request->input('area')!='') {
               $area = Area::find($request->input('area'));
               $cursos= Curso::where('area_id', '=', $area->id)->get();
-          }else($supervisor!='') {
+          }elseif($supervisor!='') {
             // $monografias= Monografia::where('supervisor', 'like', '%'.$supervisor.'%')->get();
             // $cursos = arrayCursos($monografias);
           }
@@ -60,10 +60,10 @@ class EstatisticasController extends Controller
 
     }
 
-    public function arrayCursos($array)
-    {
-
-    }
+    // public function arrayCursos($array)
+    // {
+    //
+    // }
 
     /**
      * Display the specified resource.
