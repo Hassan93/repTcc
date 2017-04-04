@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', '| Faculdade')
+@section('title', '| Administracao')
 
 @section('content')
     <div class="row">

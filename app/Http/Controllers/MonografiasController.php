@@ -69,7 +69,7 @@ class MonografiasController extends Controller
           if ($ficheiro->save()) {
                 $file->move("./imagem",$path);
                 Session::flash('success', 'Monografia cadastrada com sucesso.');
-                return redirect(route('monografias.index'));
+                return redirect(route('monografias'));
           }
           } else {
             Session::flash('error', 'O ficheiro a carregar deve ser um pdf');

@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', '| Faculdade')
+@section('title', '| Administracao')
 
 @section('content')
     <div class="row">
@@ -106,7 +106,7 @@
               <textarea class="form-control" name="resumo" rows="3" cols="70"></textarea>
             </div>
             <div class="form-group col-md-9 form-spacing-top">
-             <label for="file">Carregue a monografia</label>
+             <label for="file">Carregue a monografia (em pdf)</label>
              <input type="file" name="file" class="glyphicon glyphicon-upload">
            </div>
 

@@ -36,7 +36,7 @@ Route::group(['middleware'=>['web']], function(){
 	Route::Post('/pesquisa','VisitantesController@getMonografias');
 	Route::get('/baixar/{id}','FicheirosController@show')->name('download');
 
-	
+
 	Route::get('/admin','MonografiasController@index');
 	Route::get('/estatisticas','HomeController@estatisticas');
 	Route::get('/usuarios','UsuariosController@index');
