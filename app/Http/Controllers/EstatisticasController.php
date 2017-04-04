@@ -39,15 +39,20 @@ class EstatisticasController extends Controller
      */
     public function store(Request $request)
     {
-           $area = Area::find($request->input('area'));
+          if ($request->input('area')!='') {
+              $area = Area::find($request->input('area'));
+              $cursos= Curso::where('area_id', '=', $area->id)->get();
+          }else($request->input('supervisor')!='') {
+            $cursos= Curso::where('supervisor', 'like', '%'.$request->input('supervisor').'%')->get();
+          }
 
       // echo "Area".$request->input('area');
-           $cursos= Curso::where('area_id', '=', $area->id)->get();
+
            $monografias = $area->monografias;
            $areas = Area::all();
 
            Session::flash('success', 'Escatisticas carregadas com sucesso!');
-    
+
         return view('estatisticas.index')->withCursos($cursos)->withAreas($areas);
 
 
@@ -103,7 +108,7 @@ class EstatisticasController extends Controller
     //   $cursos= Curso::where('area_id', '=', $area->id);
     //  // $monografias = $area->monografias;
     //   $areas = Area::all();
-    
+
     // return view('estatisticas.estatistica')->withCursos($cursos)->withAreas($areas);
     }
 }
