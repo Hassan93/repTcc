@@ -39,11 +39,13 @@ class EstatisticasController extends Controller
      */
     public function store(Request $request)
     {
+      $supervisor = $request->input('supervisor');
           if ($request->input('area')!='') {
               $area = Area::find($request->input('area'));
               $cursos= Curso::where('area_id', '=', $area->id)->get();
-          }else($request->input('supervisor')!='') {
-            $cursos= Curso::where('supervisor', 'like', '%'.$request->input('supervisor').'%')->get();
+          }else($supervisor!='') {
+            // $monografias= Monografia::where('supervisor', 'like', '%'.$supervisor.'%')->get();
+            // $cursos = arrayCursos($monografias);
           }
 
       // echo "Area".$request->input('area');
@@ -55,6 +57,11 @@ class EstatisticasController extends Controller
 
         return view('estatisticas.index')->withCursos($cursos)->withAreas($areas);
 
+
+    }
+
+    public function arrayCursos($array)
+    {
 
     }
 
