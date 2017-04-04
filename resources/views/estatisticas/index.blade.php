@@ -39,13 +39,11 @@
           <table class="table table-bordered">
             <tr>
               <th>Curso</th>
-              <th>Ano</th>
               <th>Qtd de Monografias</th>
             </tr>
             @foreach($cursos as $curso)
             <tr>
               <td>{{$curso->designacao}}</td>
-              <td>2016</td>
               <td>{{count($curso->monografias)}}</td>
             </tr>
             @endforeach

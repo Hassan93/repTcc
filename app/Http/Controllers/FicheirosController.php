@@ -52,15 +52,15 @@ class FicheirosController extends Controller
                // dd($ficheiro);
             if (isset($ficheiro)) {
                 ob_end_clean();
-            return response()->download("./imagem/".$ficheiro->path, sprintf("%s.%s", $ficheiro->path, $ficheiro->extensao), ['Content-Type' => $ficheiro->mime]);      
+            return response()->download("./imagem/".$ficheiro->path, sprintf("%s.%s", $ficheiro->path, $ficheiro->extensao), ['Content-Type' => $ficheiro->mime]);
             }else{
-                echo "Ficheiro nao encontrado";
-            }
+              Session::flash('error','Ficheiro não encontrado');
+         }
         }else{
-                echo "Monografia nao existente";
-            }
-            
-        
+          Session::flash('error','Monografia não existente ');
+        }
+
+
     }
 
     /**

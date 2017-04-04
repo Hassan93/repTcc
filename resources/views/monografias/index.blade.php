@@ -42,7 +42,7 @@
               <td>
                 <a href="{{url('monografias/'.$monografia->id.'/edit')}}", class="btn btn-primary glyphicon glyphicon-pencil"></a>
                 <form action="{{route('monografias.destroy', ['id'=>$monografia->id])}} " method="delete">
-                  <button type="submit" class="btn btn-danger glyphicon glyphicon-remove"></button> 
+                  <button type="submit" class="btn btn-danger glyphicon glyphicon-remove"></button>
                 </form>
                 <a href="{{url('/monografia/'.$monografia->id.'/publicar')}}" class="btn btn-primary glyphicon glyphicon-zoom-in"></a>
               </td>
@@ -84,7 +84,7 @@
                 @endforeach
               </select>
             </div>
-            <div class="col-md-9" style="margin-top:10px">
+            <div class="col-md-9" style="margin-top:10px" hidden>
               <label for="area">Área Científica:</label>
               <select class="form-control" name="area">
                 <option value="">Escolha a área</option>
@@ -125,4 +125,3 @@
   </div>
 </div>
 <!--Validar-->
-

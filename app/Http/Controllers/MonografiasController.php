@@ -8,6 +8,7 @@ use App\Area;
 use App\Ficheiro;
 use App\Monografia;
 use Session;
+use Sentinel;
 class MonografiasController extends Controller
 {
     /**
@@ -42,48 +43,50 @@ class MonografiasController extends Controller
     public function store(Request $request)
     {
             if ($request->hasFile('file')) {
-                 $file =$request->file('file');           
-                  $path          =str_random(20); 
+                 $file =$request->file('file');
+                  $path          =str_random(20);
 
-                 $ficheiro = new Ficheiro();      
-                  $ficheiro->extensao = $file->guessExtension();             
-                  $ficheiro->tamanho = $file->getMaxFilesize();             
+                 $ficheiro = new Ficheiro();
+                  $ficheiro->extensao = $file->guessExtension();
+                  $ficheiro->tamanho = $file->getMaxFilesize();
                   $ficheiro->mime = $file->getMimeType();
-                  
-                 
+
+
           if (in_array($ficheiro->mime, ['application/x-pdf', 'application/pdf'])) {
                 $monografia = new Monografia;
+                $curso = Curso::find($request->input('curso'));
                 $monografia->autor=$request->input('autor');
                 $monografia->supervisor=$request->input('supervisor');
-                $monografia->curso_id=$request->input('curso');
-                $monografia->area_id=$request->input('area');
+                $monografia->curso_id=$curso->id;
+                $monografia->area_id=$curso->area->id;
                 $monografia->titulo=$request->input('titulo');
                 $monografia->resumo=$request->input('resumo');
                 $monografia->estado='Publicada';
                 $monografia->save();
 
                 $ficheiro->monografia()->associate($monografia);
-                $ficheiro->path =$path;             
-          if ($ficheiro->save()) {                      
-                $file->move("./imagem",$path);  
-                Session::flash('success', 'Monografia cadaastrada com sucesso.');
-                return redirect(route('monografias.index'));        
-          } else {
-                
+                $ficheiro->path =$path;
+          if ($ficheiro->save()) {
+                $file->move("./imagem",$path);
+                Session::flash('success', 'Monografia cadastrada com sucesso.');
+                return redirect(route('monografias.index'));
           }
-              echo "pdf";
+          } else {
+            Session::flash('error', 'O ficheiro a carregar deve ser um pdf');
 
-          } else {
-              // errado
-             echo "não";
           }
-            
-          
+
         } else {
-            echo 'nao tem';
+          Session::flash('error', 'As monografias devem ter um ficheiro pdf associado');
         }
 
-       // return redirect('monografias.index');
+        if (Sentinel::getUser()->roles()->first()->slug =='admin') {
+          return redirect('monografias.index');
+        }elseif (Sentinel::getUser()->roles()->first()->slug=='faculdade') {
+          return redirect(url('/faculdade/'.$slug = Sentinel::getUser()->faculdade));
+        }else {
+          Session::flash('error', 'Usuario não autorizado');
+        }
     }
 
     /**
@@ -120,7 +123,7 @@ class MonografiasController extends Controller
         }
             $cursos = Curso::all();
             $areas  = Area::all();
-        return view('monografias.edit')->withMonografia($monografia)->withCursos($cursos)->withAreas($areas); 
+        return view('monografias.edit')->withMonografia($monografia)->withCursos($cursos)->withAreas($areas);
    }
 
     /**
@@ -163,7 +166,7 @@ class MonografiasController extends Controller
 
     public function setMonografia(Request $request, $id)
      {
-        
+
           $monografia= Monografia::find($id);
 
           $monografia->update(['autor'=>$request->input('autor')]);
